@@ -1,8 +1,10 @@
 class Housekeeper < ActiveRecord::Base
   attr_reader :password
-  validates :phone, presence: true, length: {minimum: 10, maximum: 10} 
+  validates :phone, presence: true, uniqueness: true, length: {minimum: 10, maximum: 10} 
+  validates_format_of :phone, :with => /\d{10}/
   validates :password_digest, presence: true
   validates :password, length: {minimum: 6, allow_nil: true}
+
 
   after_initialize :ensure_session_token
 

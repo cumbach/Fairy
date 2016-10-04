@@ -10,7 +10,7 @@ class HousekeepersController < ApplicationController
       login!(@housekeeper)
       redirect_to appointments_url
     else
-      flash.now[:errors] = ["This Phone Number has already been used to create an account"]
+      flash.now[:errors] = @housekeeper.errors.full_messages
       render :new
     end
   end
