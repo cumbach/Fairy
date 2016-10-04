@@ -1,6 +1,9 @@
 class HousekeepersController < ApplicationController
 
   def new
+    if current_housekeeper
+      redirect_to appointments_url
+    end
     @housekeeper = Housekeeper.new
   end
 

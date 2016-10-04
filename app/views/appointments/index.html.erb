@@ -15,19 +15,14 @@
 
 <% @appointments.each do |appointment| %>
 	<div class="appointment">
-		<div class="address"><%= appointment.address.to_s%></div>
-		<div class="start"><%= appointment.start_at.strftime("%m/%d %I:%M%p")%></div>
-		<div class="end"><%= appointment.end_at.strftime("%m/%d %I:%M%p")%></div>
+		<%= render partial: 'shared/booking_info', :locals => {:appointment => appointment} %>
 
 
 		<form action="<%= appointment_url(appointment) %>" method="post">
 		  <input type="hidden" name="_method" value="patch">
 		  <%= render 'shared/auth' %>
 
-		  <input type="hidden" name="appointment[address]" id="address" value="<%= appointment.address %>">
-	  	  <input type="hidden" name="appointment[scheduled_at]" id="scheduled_at" value="<%= appointment.scheduled_at %>">
-		  <input type="hidden" name="appointment[start_at]" id="start_at" value="<%= appointment.start_at %>">
-		  <input type="hidden" name="appointment[end_at]" id="end_at" value="<%= appointment.end_at %>">
+		  <%= render partial: 'shared/hidden_fields', :locals => {:appointment => appointment} %>
 	  	  <input type="hidden" name="appointment[housekeeper_id]" id="housekeeper_id" value="<%= nil %>">
 
 		  <input type="submit" value="Remove Appointment">
