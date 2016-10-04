@@ -1,0 +1,35 @@
+<%= link_to "Return to your Appointments", appointments_url %>
+
+<h2>Book a New Appointment</h2>
+
+<div class="info-panel">
+	<p>Address</p>
+	<p>Start Time</p>
+	<p>End Time</p>
+
+</div>
+
+<% @appointments.each do |appointment| %>
+  <% if !appointment.housekeeper_id %>
+		<form action="<%= appointment_url(appointment) %>" method="post">
+		  <input type="hidden" name="_method" value="patch">
+		  <%= render 'shared/auth' %>
+
+		<div class="address"><%= appointment.address.to_s%></div>
+		<div class="start"><%= appointment.start_at.strftime("%m/%d %I:%M%p")%></div>
+		<div class="end"><%= appointment.end_at.strftime("%m/%d %I:%M%p")%></div>
+
+		  <input type="hidden" name="appointment[address]" id="address" value="<%= appointment.address %>">
+	  	  <input type="hidden" name="appointment[scheduled_at]" id="scheduled_at" value="<%= appointment.scheduled_at %>">
+		  <input type="hidden" name="appointment[start_at]" id="start_at" value="<%= appointment.start_at %>">
+		  <input type="hidden" name="appointment[end_at]" id="end_at" value="<%= appointment.end_at %>">
+	  	  <input type="hidden" name="appointment[housekeeper_id]" id="housekeeper_id" value="<%= current_housekeeper.id %>">
+
+		  <input type="submit" value="Select Appointment">
+
+		</form>
+  <% end %>
+
+<% end %>
+
+

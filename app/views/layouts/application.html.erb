@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Fairy Challenge</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+</head>
+<body>
+
+<% if current_housekeeper %>
+  <%= current_housekeeper.phone %>
+  <%= button_to "Sign Out", session_url, method: :delete %>
+  <br/><br/>
+<% end %>
+
+<%= flash[:errors] %>
+
+<%= yield %>
+
+</body>
+</html>

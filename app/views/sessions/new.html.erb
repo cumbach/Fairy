@@ -1,0 +1,17 @@
+<h1>Log In</h1>
+
+<form action="<%= session_url %>" method="post">
+  <%= render 'shared/auth' %>
+
+  <label for="phone">Phone</label>
+  <input type="text" name="housekeeper[phone]" id="phone" value="">
+
+  <label for="password">Password</label>
+  <!-- TA: This input should be of type `password` -->
+  <input type="text" name="housekeeper[password]" id="password" value="">
+
+  <input type="submit" value="Sign In">
+
+</form>
+
+<h4>New to this app? <%= link_to "Register", new_housekeeper_url %> now</h4>

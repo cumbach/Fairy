@@ -1,0 +1,16 @@
+<!-- TA: If you have time, be sure to pull out the common logic in the forms into a partial -->
+<h1>Edit Appointment</h1>
+
+<form action="<%= appointment_url(@appointment) %>" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <%= render 'shared/auth' %>
+
+  <label for="title">Title</label>
+  <input type="text" name="appointment[title]" id="title" value="<%= @appointment.title %>">
+
+  <label for="body">Body</label>
+  <input type="text" name="appointment[body]" id="body" value="<%= @appointment.body %>">
+
+  <input type="submit" value="Update Appointment">
+
+</form>

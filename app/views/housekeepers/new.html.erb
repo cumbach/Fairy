@@ -1,0 +1,16 @@
+<h1>Create a Housekeeper Account</h1>
+
+<form action="<%= housekeepers_url %>" method="post">
+  <%= render 'shared/auth' %>
+
+  <label for="phone">Phone Number</label>
+  <input type="text" name="housekeeper[phone]" id="phone">
+
+  <label for="password">Password</label>
+  <input type="text" name="housekeeper[password]" id="password">
+
+  <input type="submit" value="Sign Up">
+
+</form>
+
+<h4>Already have an account? <%= link_to "Login", new_session_url %> now</h4>
